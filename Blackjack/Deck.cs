@@ -10,29 +10,12 @@ namespace Blackjack
 
         public Deck()
         {
-            string[] ranks = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
-            string[] suits = { "Clubs", "Diamonds", "Hearts", "Spades" };
-
             cards = new List<Card>();
-            foreach (string suit in suits)
+            foreach (Suit suit in Enum.GetValues(typeof(Suit)))
             {
-                foreach (string rank in ranks)
+                foreach (Rank rank in Enum.GetValues(typeof(Rank)))
                 {
-                    int value;
-                    if (rank == "Ace")
-                    {
-                        value = 11;
-                    }
-                    else if (rank == "King" || rank == "Queen" || rank == "Jack")
-                    {
-                        value = 10;
-                    }
-                    else
-                    {
-                        value = int.Parse(rank);
-                    }
-
-                    cards.Add(new Card(rank, suit, value));
+                    cards.Add(new Card(suit, rank));
                 }
             }
         }
@@ -53,9 +36,16 @@ namespace Blackjack
 
         public Card DealCard()
         {
+            if (cards.Count == 0)
+            {
+                throw new InvalidOperationException("Deck is empty.");
+            }
+
             Card card = cards[0];
             cards.RemoveAt(0);
             return card;
         }
+
     }
+
 }

@@ -82,6 +82,6 @@ namespace Blackjack
                 Console.WriteLine("It's a tie!");
             }
         }
-        
-    }
 
+    }
+}

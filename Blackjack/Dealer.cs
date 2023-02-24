@@ -26,8 +26,8 @@ namespace Blackjack
 
         public int CalculateHandValue()
         {
-            int value = hand.First().Value; // Only consider the first card of the dealer's hand
-            int numberOfAces = hand.Count(card => card.Rank == "Ace");
+            int value = (int)hand.First().Rank; // Only consider the first card of the dealer's hand
+            int numberOfAces = hand.Count(card => card.Rank == Rank.Ace);
 
             while (numberOfAces > 0 && value > 21)
             {
@@ -37,5 +37,6 @@ namespace Blackjack
 
             return value;
         }
+
     }
 }
